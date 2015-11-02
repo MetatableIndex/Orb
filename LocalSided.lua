@@ -17,8 +17,32 @@ config.Cmd=function(name,func)
     table.insert(config.OrbCmds.Storage,{name,func})
 end
 config.getCmd=function(str)
-
+	for b,c in pairs(config.OrbCmds.Storage) do
+		if (c[1]==str) then
+			c[2]()
+		end
+	end
 end
+
+
+
+
+
+config.Cmd("lol",function()
+	local hm=Instance.new('Message',workspace)
+	hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
+	local h=hm.Text
+	local chrs={}
+	hm.Text=""
+	for i=0,string.len(h) do
+		table.insert(chrs,h:sub(i,1))
+	end
+	for lool=1,#chrs do
+		hm.Text=hm.Text..chrs[lool]
+	end
+	wait(1.25)
+	hm:remove()
+end)
 
 local part = Instance.new("Part")
  
@@ -43,6 +67,15 @@ local bannedlist = {"WhiteCodeLua","iLeFancy","Nexure","BuilderMan","tusKORs666"
 
 -- Some scripting
  
+player.Chatted:connect(function(t)
+	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
+		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
+			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
+				config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
+			end
+		end
+	end
+end)
 function bsud(p)
     
 end
@@ -109,25 +142,25 @@ end
  
 local trail = coroutine.create(function()
 while true do 
+for i=1,20,1 do
+local trail = trailPar()
+trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
+trail.Transparency = i/20
+trail.BrickColor = BrickColor.Random()
+end
+for i=20,1,-1 do
+local trail = trailPar()
+trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
+trail.Transparency = i/20
+trail.BrickColor = BrickColor.Random()
+end
 for i=1,10,1 do
-local trail = trailPar()
-trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
-end
-for i=10,1,-1 do
-local trail = trailPar()
-trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
-end
-for i=1,5,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
 trail.BrickColor = BrickColor.Random()  
 end
-for i=5,1,-1 do
+for i=10,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
