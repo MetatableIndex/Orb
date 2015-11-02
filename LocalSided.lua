@@ -1,7 +1,7 @@
 local player = game:GetService("Players").LocalPlayer or owner or game:GetService("Players"):WaitForChild("Player")
 player.Character:WaitForChild("Humanoid")
  
-local folder = Instance.new("Model",--"Folder", game:GetService("Workspace"))
+local folder = Instance.new("Model", game:GetService("Workspace"))--"Folder", game:GetService("Workspace"))
 folder.Name = "Orb"
  
  -- Commands soon to add more :D
@@ -51,7 +51,7 @@ res()
  
 game:GetService("Workspace").DescendantRemoving:connect(function(v)
 if v == folder then
-folder = Instance.new("Folder")
+folder = Instance.new("Model")
 folder.Name = "Orb"
 part = Instance.new("Part")
 folder.Parent = game:GetService("Workspace")
@@ -72,18 +72,18 @@ point = player.Character:FindFirstChild("Torso")
 end
 if part then--[[
 part.CFrame =  CFrame.new(point.CFrame.p)    *CFrame.fromEulerAnglesXYZ(-math.sin(math.rad(i)),math.rad(i),0)  *CFrame.new(0,7,-5)]]
-if orb then
-if orb.PrimaryPart==nil then
-    local torsofake=Instance.new('Part',orb)
+if folder then
+if folder.PrimaryPart==nil then
+    local torsofake=Instance.new('Part',folder)
     torsofake.Position=point.Position+Vector3.new(0,2,0)
     torsofake.Anchored=true
     torsofake.Transparency=1
     torsofake.CanCollide=false
-    orb.PrimaryPart=torsofake
+    folder.PrimaryPart=torsofake
 else
-    orb.PrimaryPart.Position=point.Position+Vector3.new(0,2,0)
+    folder.PrimaryPart.Position=point.Position+Vector3.new(0,2,0)
 end
-orb:SetPrimaryPartCFrame(orb:GetPrimaryPartCFrame()*CFrame.Angles(0,1.0
+folder:SetPrimaryPartCFrame(folder:GetPrimaryPartCFrame()*CFrame.Angles(0,1.0))
 end
 end
 wait()
