@@ -18,6 +18,8 @@ config.Cmd=function(name,func)
 end
 config.getCmd=function(str)
 	for b,c in pairs(config.OrbCmds.Storage) do
+		print(c[1])
+		print(str)
 		if (c[1]==str) then
 			c[2]()
 		end
@@ -71,8 +73,6 @@ player.Chatted:connect(function(t)
 	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
 		if (config.OrbCmds.UseEndingPrefix) then
 		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
-			print('ugly '..t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
-			print('ugly2 '..t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
 			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
 				config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
 			end
