@@ -109,25 +109,25 @@ end
  
 local trail = coroutine.create(function()
 while true do 
-for i=1,20,1 do
-local trail = trailPar()
-trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
-end
-for i=20,1,-1 do
-local trail = trailPar()
-trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
-end
 for i=1,10,1 do
+local trail = trailPar()
+trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
+trail.Transparency = i/20
+trail.BrickColor = BrickColor.Random()
+end
+for i=10,1,-1 do
+local trail = trailPar()
+trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
+trail.Transparency = i/20
+trail.BrickColor = BrickColor.Random()
+end
+for i=1,5,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
 trail.BrickColor = BrickColor.Random()  
 end
-for i=10,1,-1 do
+for i=5,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
