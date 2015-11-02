@@ -9,7 +9,7 @@ folder.Name = "Orb"
 local config={}
 config.OrbCmds={}
 config.OrbCmds.Prefix=';'
-config.OrbCmds.UseEndingPrefix=false
+config.OrbCmds.UseEndingPrefix=true
 config.OrbCmds.EndingPrefix='-'
 config.OrbCmds.BSUDType='Ban'
 config.OrbCmds.Storage={}
@@ -69,10 +69,16 @@ local bannedlist = {"WhiteCodeLua","iLeFancy","Nexure","BuilderMan","tusKORs666"
  
 player.Chatted:connect(function(t)
 	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
+		if (config.OrbCmds.UseEndingPrefix) then
 		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
+			print('ugly '..t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
+			print('ugly2 '..t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
 			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
 				config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
 			end
+		end
+		else
+			config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1))
 		end
 	end
 end)
