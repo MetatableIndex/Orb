@@ -75,9 +75,9 @@ if part then
     *CFrame.fromEulerAnglesXYZ(
 -math.sin(math.rad(i)),math.rad(i),0)
   *CFrame.new(0,7,-5)]]
-part.CFrame = CFrame.new(0, 75, 0)        
+part.CFrame = CFrame.new(point.CFtame.p)        
 	         * CFrame.Angles(math.rad(i), 0, 0)
-	         * CFrame.new(0, 0, 50)
+	         * CFrame.new(0, 7, -5)
 end
 wait()
 end
