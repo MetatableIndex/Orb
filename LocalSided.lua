@@ -1,6 +1,6 @@
 local player = game:GetService("Players").LocalPlayer or owner or game:GetService("Players"):WaitForChild("Player")
 player.Character:WaitForChild("Humanoid")
- 
+
 local folder = Instance.new("Folder", game:GetService("Workspace"))
 folder.Name = "Orb"
  
@@ -75,7 +75,7 @@ if part then
     *CFrame.fromEulerAnglesXYZ(
 -math.sin(math.rad(i)),math.rad(i),0)
   *CFrame.new(0,7,-5)]]
-part.CFrame = CFrame.new(point.CFtame.p)        
+part.CFrame = CFrame.new(point.CFrame.p)        
 	         * CFrame.Angles(math.rad(i), 0, 0)
 	         * CFrame.new(0, 7, -5)
 end
