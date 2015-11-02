@@ -81,7 +81,8 @@ if folder.PrimaryPart==nil then
     torsofake.CanCollide=false
     folder.PrimaryPart=torsofake
 else
-    folder.PrimaryPart.Position=point.Position+Vector3.new(0,2,0)
+	local npos=point.Position+Vector3.new(0,2,0)
+    folder.PrimaryPart.CFrame=CFrame.new(npos.X,npos.Y,npos.Z)
 end
 folder:SetPrimaryPartCFrame(folder:GetPrimaryPartCFrame()*CFrame.Angles(0,1.0))
 end
