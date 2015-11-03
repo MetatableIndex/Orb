@@ -190,28 +190,28 @@ if (config.Style.TrailTrack==false) then t1=t1/2 t2=t2/2 end
 for i=1,20,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,jumptry(i,20),-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2) + CFrame.new(0,jumptry(i,20),0)
 trail.Transparency = i/t1
 trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=20,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,jumptry(i,20),-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2) + CFrame.new(0,jumptry(i,20),0)
 trail.Transparency = i/t1
 trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=1,10,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,jumptry(i,10),-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2) + CFrame.new(0,jumptry(i,10),0)
 trail.Transparency = i/t2
 trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
 for i=10,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,jumptry(i,10),-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2) + CFrame.new(0,jumptry(i,10),0)
 trail.Transparency = i/t2
 trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
