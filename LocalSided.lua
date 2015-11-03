@@ -132,7 +132,7 @@ if part then
 -math.sin(math.rad(i)),math.rad(i),0)
   *CFrame.new(0,7,-5)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
-			 * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, math.rad(i))
+			 * CFrame.fromEulerAnglesXYZ(-math.rad(0-i), 0- math.rad(0-i))
 	         * CFrame.new(0, 0, -15)
 end
 wait()
