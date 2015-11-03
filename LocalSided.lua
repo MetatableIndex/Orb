@@ -111,7 +111,7 @@ if part then
 -math.sin(math.rad(i)),math.rad(i),0)
   *CFrame.new(0,7,-2)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
-                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
+                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 2)
                  * CFrame.new(0, 7, -2)
 end
 wait()
@@ -136,7 +136,7 @@ trail.TopSurface = "Smooth"
 trail.Shape = "Block"
 trail.FormFactor = "Custom"
 trail.Size = Vector3.new(0.1,0.1,dist)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,2,-dist/2)
 trail.Parent = folder
 game:GetService("Debris"):AddItem(trail,2)
 return trail    
