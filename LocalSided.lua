@@ -145,7 +145,7 @@ if part then
   *CFrame.new(0,7,-5)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
 			 * CFrame.fromEulerAnglesXYZ(0, math.rad(i), math.rad(i))
-	         * CFrame.new(0, jumptry(i/40,360/40), -15)
+	         * CFrame.new(0, jumptry((i+20)/60,360/60), -15)
 end
 wait()
 end
