@@ -116,7 +116,7 @@ if part then
   *CFrame.new(0,7,-5)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
 			 * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
-	         * CFrame.new(0, 7, -5)
+	         * CFrame.new(0, 6, -4)
 end
 wait()
 end
@@ -166,15 +166,6 @@ trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
 trail.BrickColor = BrickColor.Random()  
 end
-for i=10,1,-1 do
-local trail = trailPar()
-trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
-trail.Transparency = i/10
-trail.BrickColor = BrickColor.Random()  
-end
-end
-end)
- 
  
 coroutine.resume(loop)
 coroutine.resume(trail)
