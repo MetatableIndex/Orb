@@ -13,7 +13,7 @@ config.Style.TrailColor="Bright green" -- Random will work
 -- The name of the BrickColor for trails.
 config.Style.TrailTrack=true -- If false, there will be hidden parts on the
 -- middle of the train, and continuing.
-config.Style.QuickDeleteTrail=true -- If false, the trail will take some time before
+config.Style.QuickDeleteTrail=false -- If false, the trail will take some time before
 -- deleted.
 config.OrbCmds.Prefix=';'
 config.OrbCmds.UseEndingPrefix=true
@@ -28,6 +28,7 @@ config.Style.Color=function(t)
 	end
 end
 config.Cmd=function(name,func)
+	print('[CMD] Initializing '..name)
     table.insert(config.OrbCmds.Storage,{name,func})
 end
 config.getCmd=function(str)
