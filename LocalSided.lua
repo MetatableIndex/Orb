@@ -10,6 +10,8 @@ local config={}
 config.Style={}
 config.OrbCmds={}
 config.Style.TrailColor="Random" -- Random will work
+config.Style.TrailTrack=true -- If false, there will be hidden parts on the
+-- middle of the train, and continuing.
 config.OrbCmds.Prefix=';'
 config.OrbCmds.UseEndingPrefix=true
 config.OrbCmds.EndingPrefix='-'
@@ -158,28 +160,31 @@ end
  
 local trail = coroutine.create(function()
 while true do 
+local t1=20
+local t2=10
+if (config.Style.TrailTrack) then t1=t1/2 t2=t2/2 end
 for i=1,20,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
+trail.Transparency = i/t1
 trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=20,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
-trail.Transparency = i/20
+trail.Transparency = i/t1
 trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=1,10,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
-trail.Transparency = i/10
+trail.Transparency = i/t2
 trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
 for i=10,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
-trail.Transparency = i/10
+trail.Transparency = i/t2
 trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
 end
