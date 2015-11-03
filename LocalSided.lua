@@ -19,7 +19,7 @@ config.Style.Color=function(t)
 	if (t:lower()~="random") then
 		return BrickColor.new(t)
 	else
-		return config.Style.Color(config.Style.TrailColor)
+		return BrickColor.Random()
 	end
 end
 config.Cmd=function(name,func)
