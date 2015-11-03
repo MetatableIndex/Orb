@@ -7,11 +7,14 @@ folder.Name = "Orb"
  -- Commands soon to add more :D
  
 local config={}
+config.Style={}
 config.OrbCmds={}
 config.OrbCmds.Prefix=';'
 config.OrbCmds.UseEndingPrefix=false
 config.OrbCmds.EndingPrefix='-'
 config.OrbCmds.BSUDType='Ban'
+config.Style.TrailColor="Really black" -- Random will also work
+
 config.OrbCmds.Storage={}
 config.Cmd=function(name,func)
     table.insert(config.OrbCmds.Storage,{name,func})
@@ -22,6 +25,9 @@ config.getCmd=function(str)
                         c[2]()
                 end
         end
+end
+function getclr(col)
+  if (col=="Random") then return BrickColor.random() else return BrickColor.new(col) end
 end
 
 
@@ -71,7 +77,7 @@ player.Chatted:connect(function(t)
         if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
                 if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
                         print(t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix)+1))
-                        print(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)+1))
+                        print(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
                         if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
                                 config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
                         end
@@ -111,7 +117,7 @@ if part then
 -math.sin(math.rad(i)),math.rad(i),0)
   *CFrame.new(0,7,-2)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
-                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 2)
+                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
                  * CFrame.new(0, 7, -2)
 end
 wait()
@@ -136,7 +142,7 @@ trail.TopSurface = "Smooth"
 trail.Shape = "Block"
 trail.FormFactor = "Custom"
 trail.Size = Vector3.new(0.1,0.1,dist)
-trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,2,-dist/2)
+trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
 trail.Parent = folder
 game:GetService("Debris"):AddItem(trail,2)
 return trail    
@@ -148,25 +154,25 @@ for i=1,20,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
 trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
+trail.BrickColor = getclr(config.Style.TrailColor)
 end
 for i=20,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
 trail.Transparency = i/20
-trail.BrickColor = BrickColor.Random()
+trail.BrickColor = getclr(config.Style.TrailColor)
 end
 for i=1,10,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
-trail.BrickColor = BrickColor.Random()  
+trail.BrickColor = getclr(config.Style.TrailColor)  
 end
 for i=10,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
-trail.BrickColor = BrickColor.Random()  
+trail.BrickColor = getclr(config.Style.TrailColor)  
 end
 end
 end)
