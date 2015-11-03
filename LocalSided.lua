@@ -44,6 +44,9 @@ end
 
 
 
+config.Cmd("test",function()
+	print('hahs')
+end)
 config.Cmd("lol",function()
 	local hm=Instance.new('Message',workspace)
 	hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
@@ -85,7 +88,6 @@ local bannedlist = {"WhiteCodeLua","iLeFancy","Nexure","BuilderMan","tusKORs666"
  
 player.Chatted:connect(function(t)
 	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
-		print((t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1)))
 		if (config.OrbCmds.UseEndingPrefix) then
 		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
 			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
