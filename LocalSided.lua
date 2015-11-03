@@ -9,9 +9,12 @@ folder.Name = "Orb"
 local config={}
 config.Style={}
 config.OrbCmds={}
-config.Style.TrailColor="Random" -- Random will work
+config.Style.TrailColor="Bright green" -- Random will work
+-- The name of the BrickColor for trails.
 config.Style.TrailTrack=true -- If false, there will be hidden parts on the
 -- middle of the train, and continuing.
+config.Style.QuickDeleteTrail=true -- If false, the trail will take some time before
+-- deleted.
 config.OrbCmds.Prefix=';'
 config.OrbCmds.UseEndingPrefix=true
 config.OrbCmds.EndingPrefix='-'
@@ -154,7 +157,10 @@ trail.FormFactor = "Custom"
 trail.Size = Vector3.new(0.1,0.1,dist)
 trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
 trail.Parent = folder
-game:GetService("Debris"):AddItem(trail,2)
+local gt=2
+if (config.Style.QuickDeleteTrail) then gt=1 end
+
+game:GetService("Debris"):AddItem(trail,gt)
 return trail    
 end
  
@@ -162,7 +168,7 @@ local trail = coroutine.create(function()
 while true do 
 local t1=20
 local t2=10
-if (config.Style.TrailTrack) then t1=t1/2 t2=t2/2 end
+if (config.Style.TrailTrack==false) then t1=t1/2 t2=t2/2 end
 for i=1,20,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
