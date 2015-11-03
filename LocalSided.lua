@@ -9,7 +9,7 @@ folder.Name = "Orb"
 local config={}
 config.OrbCmds={}
 config.OrbCmds.Prefix=';'
-config.OrbCmds.UseEndingPrefix=true
+config.OrbCmds.UseEndingPrefix=false
 config.OrbCmds.EndingPrefix='-'
 config.OrbCmds.BSUDType='Ban'
 config.OrbCmds.Storage={}
@@ -17,13 +17,11 @@ config.Cmd=function(name,func)
     table.insert(config.OrbCmds.Storage,{name,func})
 end
 config.getCmd=function(str)
-	for b,c in pairs(config.OrbCmds.Storage) do
-		print(c[1])
-		print(str)
-		if (c[1]==str) then
-			c[2]()
-		end
-	end
+        for b,c in pairs(config.OrbCmds.Storage) do
+                if (c[1]==str) then
+                        c[2]()
+                end
+        end
 end
 
 
@@ -31,19 +29,19 @@ end
 
 
 config.Cmd("lol",function()
-	local hm=Instance.new('Message',workspace)
-	hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
-	local h=hm.Text
-	local chrs={}
-	hm.Text=""
-	for i=0,string.len(h) do
-		table.insert(chrs,h:sub(i,1))
-	end
-	for lool=1,#chrs do
-		hm.Text=hm.Text..chrs[lool]
-	end
-	wait(1.25)
-	hm:remove()
+        local hm=Instance.new('Message',workspace)
+        hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
+        local h=hm.Text
+        local chrs={}
+        hm.Text=""
+        for i=0,string.len(h) do
+                table.insert(chrs,h:sub(i,1))
+        end
+        for lool=1,#chrs do
+                hm.Text=hm.Text..chrs[lool]
+        end
+        wait(1.25)
+        hm:remove()
 end)
 
 local part = Instance.new("Part")
@@ -70,17 +68,15 @@ local bannedlist = {"WhiteCodeLua","iLeFancy","Nexure","BuilderMan","tusKORs666"
 -- Some scripting
  
 player.Chatted:connect(function(t)
-	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
-		if (config.OrbCmds.UseEndingPrefix) then
-		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
-			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
-				config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
-			end
-		end
-		else
-			config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1))
-		end
-	end
+        if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
+                if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
+                        print(t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix)+1))
+                        print(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)+1))
+                        if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
+                                config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)))
+                        end
+                end
+        end
 end)
 function bsud(p)
     
@@ -113,10 +109,10 @@ if part then
 --[[part.CFrame =  CFrame.new(point.CFrame.p)
     *CFrame.fromEulerAnglesXYZ(
 -math.sin(math.rad(i)),math.rad(i),0)
-  *CFrame.new(0,7,-5)]]
+  *CFrame.new(0,7,-2)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
-			 * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
-	         * CFrame.new(0, 6, -4)
+                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
+                 * CFrame.new(0, 7, -2)
 end
 wait()
 end
@@ -166,7 +162,15 @@ trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
 trail.BrickColor = BrickColor.Random()  
 end
+for i=10,1,-1 do
+local trail = trailPar()
+trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
+trail.Transparency = i/10
+trail.BrickColor = BrickColor.Random()  
+end
+end
+end)
+ 
  
 coroutine.resume(loop)
 coroutine.resume(trail)
-
