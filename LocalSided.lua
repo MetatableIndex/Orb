@@ -9,25 +9,30 @@ folder.Name = "Orb"
 local config={}
 config.Style={}
 config.OrbCmds={}
+config.Style.TrailColor="Random" -- Random will work
 config.OrbCmds.Prefix=';'
-config.OrbCmds.UseEndingPrefix=false
+config.OrbCmds.UseEndingPrefix=true
 config.OrbCmds.EndingPrefix='-'
 config.OrbCmds.BSUDType='Ban'
-config.Style.TrailColor="Really black" -- Random will also work
-
 config.OrbCmds.Storage={}
+config.Style.Color=function(t)
+	if (t:lower()~="random") then
+		return BrickColor.new(t)
+	else
+		return config.Style.Color(config.Style.TrailColor)
+	end
+end
 config.Cmd=function(name,func)
     table.insert(config.OrbCmds.Storage,{name,func})
 end
 config.getCmd=function(str)
-        for b,c in pairs(config.OrbCmds.Storage) do
-                if (c[1]==str) then
-                        c[2]()
-                end
-        end
-end
-function getclr(col)
-  if (col=="Random") then return BrickColor.random() else return BrickColor.new(col) end
+	for b,c in pairs(config.OrbCmds.Storage) do
+		print(c[1])
+		print(str)
+		if (c[1]==str) then
+			c[2]()
+		end
+	end
 end
 
 
@@ -35,19 +40,19 @@ end
 
 
 config.Cmd("lol",function()
-        local hm=Instance.new('Message',workspace)
-        hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
-        local h=hm.Text
-        local chrs={}
-        hm.Text=""
-        for i=0,string.len(h) do
-                table.insert(chrs,h:sub(i,1))
-        end
-        for lool=1,#chrs do
-                hm.Text=hm.Text..chrs[lool]
-        end
-        wait(1.25)
-        hm:remove()
+	local hm=Instance.new('Message',workspace)
+	hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
+	local h=hm.Text
+	local chrs={}
+	hm.Text=""
+	for i=0,string.len(h) do
+		table.insert(chrs,h:sub(i,1))
+	end
+	for lool=1,#chrs do
+		hm.Text=hm.Text..chrs[lool]
+	end
+	wait(1.25)
+	hm:remove()
 end)
 
 local part = Instance.new("Part")
@@ -74,15 +79,18 @@ local bannedlist = {"WhiteCodeLua","iLeFancy","Nexure","BuilderMan","tusKORs666"
 -- Some scripting
  
 player.Chatted:connect(function(t)
-        if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
-                if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
-                 print(t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix))
-                  print(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1)))
-                        if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
-                                config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1)))
-                        end
-                end
-        end
+	if (t:sub(0,string.len(config.OrbCmds.Prefix))==config.OrbCmds.Prefix) then
+		print((t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1)))
+		if (config.OrbCmds.UseEndingPrefix) then
+		if (string.len(t)>=string.len(config.OrbCmds.EndingPrefix)) then
+			if (t:sub(string.len(t)-string.len(config.OrbCmds.EndingPrefix))==config.OrbCmds.EndingPrefix) then
+				config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1):sub(0,string.len(t)-string.len(config.OrbCmds.EndingPrefix)-1))
+			end
+		end
+		else
+			config.getCmd(t:sub(string.len(config.OrbCmds.Prefix)+1))
+		end
+	end
 end)
 function bsud(p)
     
@@ -115,10 +123,10 @@ if part then
 --[[part.CFrame =  CFrame.new(point.CFrame.p)
     *CFrame.fromEulerAnglesXYZ(
 -math.sin(math.rad(i)),math.rad(i),0)
-  *CFrame.new(0,7,-2)]]
+  *CFrame.new(0,7,-5)]]
 part.CFrame = CFrame.new(point.CFrame.p)      
-                         * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
-                 * CFrame.new(0, 7, -2)
+			 * CFrame.fromEulerAnglesXYZ(math.rad(i), 0, 0)
+	         * CFrame.new(0, 7, -5)
 end
 wait()
 end
@@ -154,25 +162,25 @@ for i=1,20,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
 trail.Transparency = i/20
-trail.BrickColor = getclr(config.Style.TrailColor)
+trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=20,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/20,i/20,0)
 trail.Transparency = i/20
-trail.BrickColor = getclr(config.Style.TrailColor)
+trail.BrickColor = config.Style.Color(config.Style.TrailColor)
 end
 for i=1,10,1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
-trail.BrickColor = getclr(config.Style.TrailColor)  
+trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
 for i=10,1,-1 do
 local trail = trailPar()
 trail.Size = trail.Size + Vector3.new(i/10,i/10,0)
 trail.Transparency = i/10
-trail.BrickColor = getclr(config.Style.TrailColor)  
+trail.BrickColor = config.Style.Color(config.Style.TrailColor) 
 end
 end
 end)
@@ -180,3 +188,4 @@ end)
  
 coroutine.resume(loop)
 coroutine.resume(trail)
+
