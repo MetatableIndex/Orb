@@ -1,9 +1,9 @@
 # Orb
 
-By SBCore
+By CoreSB
 
 Team:
 
--SBCore
+-CoreSB
 -owogorga123456
 -marcoantoniosantos3
