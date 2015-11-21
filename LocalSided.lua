@@ -3,6 +3,9 @@ player.Character:WaitForChild("Humanoid")
 
 local folder = Instance.new("Folder", game:GetService("Workspace"))
 folder.Name = "Orb"
+
+local workspace = game.workspace
+local lighting = game.Lighting
  
  -- Commands soon to add more :D
  
