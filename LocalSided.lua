@@ -22,7 +22,7 @@ config.Style.QuickDeleteTrail=false -- If false, the trail will take some time b
 config.OrbCmds.Prefix=';'
 config.OrbCmds.UseEndingPrefix=true
 config.OrbCmds.EndingPrefix='-'
-config.OrbCmds.BSUDType='Ban'
+config.OrbCmds.BSUDType='msg'
 config.OrbCmds.Storage={}
 config.Style.Color=function(t)
 	if (t:lower()~="random") then
@@ -59,12 +59,12 @@ end
 
 
 
-config.Cmd("test",function()
+config.Cmd("test",function(msg)
 	print('hahs')
 end)
-config.Cmd("lol",function()
+config.Cmd("tell",function(msg)
 	local hm=Instance.new('Message',workspace)
-	hm.Text='LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL'
+	hm.Text=msg
 	local h=hm.Text
 	local chrs={}
 	hm.Text=""
